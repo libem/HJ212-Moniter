@@ -108,8 +108,9 @@ public abstract class FieldValidator<A extends Annotation,V,AF extends Annotatio
         Map<String, List<ConstraintViolation>> typeCVs = constraintViolationSet
                 .stream()
                 .collect(Collectors.groupingBy(
-                        ConstraintViolation::getMessage,
-                        Collectors.toList())
+                        ConstraintViolation::getMessage
+                        //,Collectors.toList()
+                        )
                 );
 
         Map<String, String> typePropertys = typeCVs.entrySet()

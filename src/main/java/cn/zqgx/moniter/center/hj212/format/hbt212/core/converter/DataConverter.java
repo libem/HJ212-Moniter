@@ -127,6 +127,7 @@ public class DataConverter
     private Map<String,String> filter(Map<String,String> map, Predicate<String> predicate){
         return map.entrySet()
                 .stream()
+                .filter(kv -> kv.getValue()!=null)
                 .filter(kv -> predicate.test(kv.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
