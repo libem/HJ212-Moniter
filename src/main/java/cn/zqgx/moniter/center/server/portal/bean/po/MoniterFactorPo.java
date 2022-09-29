@@ -34,6 +34,10 @@ public class MoniterFactorPo {
     @TableField("data_status")
     private String dataStatus;
 
+    //数据类型:实时值Rtd、均值Avg...
+    @TableField("data_type")
+    private String dataType;
+
     @TableField("time")
     private LocalDateTime time;
 

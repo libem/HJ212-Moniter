@@ -99,7 +99,7 @@ public class SegmentParser
         }
 
         //一次性读取多少位,必须包括字符串中的键值对
-        CharBuffer buffer = CharBuffer.allocate(10+2);
+        CharBuffer buffer = CharBuffer.allocate(10+3);
 
         //之后的Token
         int len = ReaderStream.of(reader)

@@ -36,9 +36,19 @@ public class MoniterService {
         synchronized (t212Mapper) {
             Data data = t212Mapper.readData(moniterData);
             data.getCp().getPollution().forEach((key, value) -> {
+                String val = "", type="";
+                if(value.getRtd() != null){
+                    val = value.getRtd().toString();
+                    type = "Rtd";
+                }
+                if(value.getAvg() != null){
+                    val = value.getAvg().toString();
+                    type = "Avg";
+                }
                 factorMappr.insert(MoniterFactorPo.builder().dataStatus(Constant.EFFECTIVE).mncode(data.getMn())
-                        .dataTime(data.getCp().getDataTime()).factor(key).value(value.getRtd().toString())
+                        .dataTime(data.getCp().getDataTime()).factor(key).value(val).dataType(type)
                         .time(LocalDateTime.now(Clock.systemDefaultZone())).build());
+
             });
             if (DataFlag.A.isMarked(data.getDataFlag())) {
                 response = t212Mapper.writeDataAsString(Data.builder().qn(data.getQn()).st(data.getSt()).cn(Constant.DATA_RESPONSE)
